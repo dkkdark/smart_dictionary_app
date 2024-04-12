@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smart_dictionary/presentation/common/dictionary_button.dart';
 import 'package:smart_dictionary/presentation/common/dictionary_fab.dart';
+import 'package:smart_dictionary/presentation/list_creation/list_creation_screen.dart';
 import 'package:smart_dictionary/presentation/main/definition_model.dart';
 import 'package:smart_dictionary/presentation/main/list_card.dart';
 import 'package:smart_dictionary/presentation/models/list_model.dart';
@@ -8,15 +9,19 @@ import 'package:smart_dictionary/presentation/models/synonym_model.dart';
 import 'package:smart_dictionary/presentation/models/translation_model.dart';
 import 'package:smart_dictionary/presentation/models/word_model.dart';
 import 'package:smart_dictionary/presentation/theme/colors.dart';
+import 'package:smart_dictionary/presentation/word_creation/word_creation_screen.dart';
 
-class HomePageWidget extends StatefulWidget {
-  const HomePageWidget({super.key});
+class MainPageWidget extends StatefulWidget {
+  static route() => MaterialPageRoute(
+        builder: (context) => const MainPageWidget(),
+      );
+  const MainPageWidget({super.key});
 
   @override
-  State<HomePageWidget> createState() => _HomePageWidgetState();
+  State<MainPageWidget> createState() => _MainPageWidgetState();
 }
 
-class _HomePageWidgetState extends State<HomePageWidget> {
+class _MainPageWidgetState extends State<MainPageWidget> {
   final List<ListModel> listCards = [
     ListModel(
       1,
@@ -34,12 +39,26 @@ class _HomePageWidgetState extends State<HomePageWidget> {
     )
   ];
 
+  void onFabClicked() {
+    Navigator.push(
+      context,
+      WordCreationWidget.route(),
+    );
+  }
+
+  void onCreateListClicked() {
+    Navigator.push(
+      context,
+      ListCreationWidget.route(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: DictionaryFab(
         text: "Слово",
-        onPressed: () => {},
+        onPressed: onFabClicked,
         icon: Icons.add,
       ),
       appBar: AppBar(
@@ -64,7 +83,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           children: [
             DictionaryButton(
               text: 'Создать список',
-              onPressed: () => {},
+              onPressed: onCreateListClicked,
             ),
             ListView.builder(
               scrollDirection: Axis.vertical,

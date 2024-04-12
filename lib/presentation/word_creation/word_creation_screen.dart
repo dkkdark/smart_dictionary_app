@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:smart_dictionary/presentation/common/dictionary_fab.dart';
 import 'package:smart_dictionary/presentation/common/dictionary_text_field.dart';
 import 'package:smart_dictionary/presentation/theme/colors.dart';
-import 'package:smart_dictionary/presentation/word_creation/button.dart';
+import 'package:smart_dictionary/presentation/word_creation/list_chosing_button.dart';
 
 class WordCreationWidget extends StatefulWidget {
+  static route() => MaterialPageRoute(
+        builder: (context) => const WordCreationWidget(),
+      );
   const WordCreationWidget({super.key});
 
   @override
@@ -12,12 +15,20 @@ class WordCreationWidget extends StatefulWidget {
 }
 
 class _WordCreationWidgetState extends State<WordCreationWidget> {
+  void onFabClicked() {
+    // TODO
+  }
+
+  void backToMain() {
+    Navigator.pop(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: DictionaryFab(
-        text: "Новое слово",
-        onPressed: () => {},
+        text: "Добавить",
+        onPressed: onFabClicked,
         icon: Icons.add,
       ),
       appBar: AppBar(
@@ -29,9 +40,7 @@ class _WordCreationWidgetState extends State<WordCreationWidget> {
             color: Colors.white,
             size: 30,
           ),
-          onPressed: () async {
-            // Go up
-          },
+          onPressed: backToMain,
         ),
         title: const Text(
           'Smart Dictionary',
@@ -44,7 +53,7 @@ class _WordCreationWidgetState extends State<WordCreationWidget> {
         centerTitle: false,
         elevation: 2,
       ),
-      body: SafeArea(
+      body: const SafeArea(
         top: true,
         child: Column(
           mainAxisSize: MainAxisSize.max,

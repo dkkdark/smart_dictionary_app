@@ -6,6 +6,9 @@ import 'package:smart_dictionary/presentation/theme/colors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class ListCreationWidget extends StatefulWidget {
+  static route() => MaterialPageRoute(
+        builder: (context) => const ListCreationWidget(),
+      );
   const ListCreationWidget({super.key});
 
   @override
@@ -29,12 +32,20 @@ class _ListCreationState extends State<ListCreationWidget> {
     "https://api.iconify.design/fluent/animal-cat-24-regular.svg?color=white"
   ];
 
+  void backToMain() {
+    Navigator.pop(context);
+  }
+
+  void onFabClicked() {
+    // TODO
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         floatingActionButton: DictionaryFab(
           text: "Добавить",
-          onPressed: () => {},
+          onPressed: onFabClicked,
           icon: Icons.add,
         ),
         appBar: AppBar(
@@ -46,9 +57,7 @@ class _ListCreationState extends State<ListCreationWidget> {
               color: Colors.white,
               size: 30,
             ),
-            onPressed: () async {
-              // Go up
-            },
+            onPressed: backToMain,
           ),
           title: const Text(
             'Smart Dictionary',
