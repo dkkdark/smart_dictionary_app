@@ -1,4 +1,4 @@
-#Thu Apr 11 11:11:52 MSK 2024
+#Sat Apr 13 21:54:00 MSK 2024
 base.0=/Users/kseniablokhina/AndroidStudioProjects/smart_dictionary/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
 path.0=classes.dex
 renamed.0=classes.dex

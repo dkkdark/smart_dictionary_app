@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:smart_dictionary/presentation/list_creation/bloc/list_creation_bloc.dart';
-import 'package:smart_dictionary/presentation/list_creation/list_creation_screen.dart';
-import 'package:smart_dictionary/presentation/main/bloc/main_bloc.dart';
-import 'package:smart_dictionary/presentation/main/main_screen.dart';
-import 'package:smart_dictionary/presentation/theme/theme.dart';
-import 'package:smart_dictionary/presentation/word_creation/bloc/word_creation_bloc.dart';
-import 'package:smart_dictionary/presentation/word_creation/word_creation_screen.dart';
+import 'package:smart_dictionary/features/list_creation/presentation/bloc/list_creation_bloc.dart';
+import 'package:smart_dictionary/features/list_creation/presentation/widget/list_creation_screen.dart';
+import 'package:smart_dictionary/features/home/presentation/bloc/main_bloc.dart';
+import 'package:smart_dictionary/features/home/presentation/widget/main_screen.dart';
+import 'package:smart_dictionary/core/theme/theme.dart';
+import 'package:smart_dictionary/features/word_creation/presentation/bloc/word_creation_bloc.dart';
+import 'package:smart_dictionary/features/word_creation/presentation/widget/word_creation_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
