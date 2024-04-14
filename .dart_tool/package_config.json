@@ -254,6 +254,24 @@
       "languageVersion": "2.18"
     },
     {
+      "name": "hive",
+      "rootUri": "file:///Users/kseniablokhina/.pub-cache/hosted/pub.dev/hive-2.2.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "hive_flutter",
+      "rootUri": "file:///Users/kseniablokhina/.pub-cache/hosted/pub.dev/hive_flutter-1.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "hive_generator",
+      "rootUri": "file:///Users/kseniablokhina/.pub-cache/hosted/pub.dev/hive_generator-2.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "http",
       "rootUri": "file:///Users/kseniablokhina/.pub-cache/hosted/pub.dev/http-1.2.1",
       "packageUri": "lib/",
@@ -614,7 +632,7 @@
       "languageVersion": "3.3"
     }
   ],
-  "generated": "2024-04-13T20:06:31.479912Z",
+  "generated": "2024-04-14T15:38:03.955693Z",
   "generator": "pub",
   "generatorVersion": "3.3.3"
 }

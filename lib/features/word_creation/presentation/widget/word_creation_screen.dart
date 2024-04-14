@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:smart_dictionary/core/common_ui/dictionary_fab.dart';
 import 'package:smart_dictionary/core/common_ui/dictionary_text_field.dart';
 import 'package:smart_dictionary/core/theme/colors.dart';
-import 'package:smart_dictionary/features/word_creation/presentation/widget/list_chosing_button.dart';
 
 class WordCreationWidget extends StatefulWidget {
   static route() => MaterialPageRoute(
@@ -53,7 +52,7 @@ class _WordCreationWidgetState extends State<WordCreationWidget> {
         centerTitle: false,
         elevation: 2,
       ),
-      body: const SafeArea(
+      body: SafeArea(
         top: true,
         child: Column(
           mainAxisSize: MainAxisSize.max,
@@ -64,6 +63,7 @@ class _WordCreationWidgetState extends State<WordCreationWidget> {
               iconList: null,
               icon: "https://api.iconify.design/cil/animal.svg?color=white",
               title: "title",
+              textValueCallback: (p0) => {},
             ),
           ],
         ),

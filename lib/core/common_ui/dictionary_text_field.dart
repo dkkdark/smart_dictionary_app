@@ -7,13 +7,15 @@ class DictionaryTextField extends StatefulWidget {
   final Widget? iconList;
   final String? icon;
   final String? title;
+  final Function(String) textValueCallback;
 
   const DictionaryTextField(
       {super.key,
       required this.hint,
       this.iconList,
       this.icon,
-      required this.title});
+      required this.title,
+      required this.textValueCallback});
 
   @override
   State<DictionaryTextField> createState() => _DictionaryTextFieldState();
@@ -24,19 +26,31 @@ class _DictionaryTextFieldState extends State<DictionaryTextField> {
   bool _isListVisible = false;
   double? buttonWidth;
 
-  void printWidgetPosition() {
-    print('absolute coordinates on screen: ${containerKey.globalPaintBounds}');
+  final TextEditingController _textController = TextEditingController();
+
+  void setWidgetPosition() {
     setState(() {
       buttonWidth = containerKey.globalPaintBounds?.left;
     });
   }
 
+  void _getTextLatestValue() {
+    widget.textValueCallback(_textController.text);
+  }
+
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      printWidgetPosition();
+      setWidgetPosition();
     });
     super.initState();
+    _textController.addListener(_getTextLatestValue);
+  }
+
+  @override
+  void dispose() {
+    _textController.dispose();
+    super.dispose();
   }
 
   Widget getButton() {
@@ -136,6 +150,7 @@ class _DictionaryTextFieldState extends State<DictionaryTextField> {
             child: Column(
               children: [
                 TextField(
+                  controller: _textController,
                   decoration: InputDecoration(
                     hintText: widget.hint,
                     contentPadding: const EdgeInsets.symmetric(
@@ -169,14 +184,14 @@ extension GlobalKeyExtension on GlobalKey {
 }
 
 class IconsList extends StatelessWidget {
-  final List<String> results;
+  final List<String?> results;
   final double iconSize;
   const IconsList({super.key, required this.results, required this.iconSize});
 
   @override
   Widget build(BuildContext context) {
     final int crossAxisCount = MediaQuery.of(context).size.width ~/ iconSize;
-
+    print("qqq $results");
     return Column(
       children: [
         const Divider(
@@ -198,7 +213,7 @@ class IconsList extends StatelessWidget {
               itemBuilder: (context, index) {
                 return Center(
                   child: SvgPicture.network(
-                    results[index],
+                    results.nonNulls.elementAt(index),
                     width: iconSize,
                     height: iconSize,
                   ),

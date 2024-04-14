@@ -37,6 +37,7 @@
         <activity
             android:name="com.example.smart_dictionary.MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+            android:enableOnBackInvokedCallback="true"
             android:exported="true"
             android:hardwareAccelerated="true"
             android:launchMode="singleTop"

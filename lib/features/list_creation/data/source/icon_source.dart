@@ -18,7 +18,7 @@ class IconSourceImpl implements IconSource {
   @override
   Future<IconResponse> getIcons(
       {required String word, required int limit}) async {
-    var query = {"word": word, "limit": limit};
+    var query = {"query": word, "limit": limit};
     try {
       final request = await dioIconClient.get("search", queryParameters: query);
       if (request.statusCode != 200) {

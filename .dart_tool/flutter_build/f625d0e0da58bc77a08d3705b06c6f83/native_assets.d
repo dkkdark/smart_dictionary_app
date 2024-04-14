@@ -1,0 +1,1 @@
+ /Users/kseniablokhina/AndroidStudioProjects/smart_dictionary/.dart_tool/flutter_build/f625d0e0da58bc77a08d3705b06c6f83/native_assets.yaml: 
