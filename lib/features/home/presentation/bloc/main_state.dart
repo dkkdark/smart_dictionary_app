@@ -1,9 +1,16 @@
 part of 'main_bloc.dart';
 
+enum MainStatus {
+  initial;
+
+  bool get isInitial => this == MainStatus.initial;
+}
+
 @freezed
 class MainState with _$MainState {
-  const factory MainState.initial() = _Initial;
-  const factory MainState.mainLoadListLoading() = _MainLoadListLoading;
-  const factory MainState.mainLoadListSuccess() = _MainLoadListSuccess;
-  const factory MainState.mainLoadListError() = _MainLoadListError;
+  const factory MainState({
+    @Default(MainStatus.initial) MainStatus status,
+    @Default("") String message,
+    @Default([]) List<ListModel> list,
+  }) = _MainState;
 }

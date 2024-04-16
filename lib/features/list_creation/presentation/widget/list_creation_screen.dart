@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:smart_dictionary/core/common_ui/dictionary_fab.dart';
 import 'package:smart_dictionary/core/common_ui/dictionary_text_field.dart';
+import 'package:smart_dictionary/core/common_ui/snackbar.dart';
 import 'package:smart_dictionary/core/theme/colors.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:smart_dictionary/features/list_creation/domain/model/list/list_model.dart';
 import 'package:smart_dictionary/features/list_creation/presentation/bloc/list_creation_bloc.dart';
 
 class ListCreationWidget extends StatefulWidget {
@@ -18,17 +19,36 @@ class ListCreationWidget extends StatefulWidget {
 }
 
 class _ListCreationState extends State<ListCreationWidget> {
-  final TextEditingController _textController = TextEditingController();
-  final TextEditingController _secondController = TextEditingController();
-
   final double iconSize = 50.0;
+  String listName = "";
+  String chosenIcon = "";
 
   void backToMain() {
     Navigator.pop(context);
   }
 
+  void setListName(String name) {
+    setState(() {
+      listName = name;
+    });
+  }
+
+  void setIcon(String? icon) {
+    setState(() {
+      chosenIcon = icon ?? "";
+    });
+  }
+
   void onFabClicked() {
-    // TODO
+    if (chosenIcon.isEmpty) {
+      showSnackBar(context, "Please, choose an icon");
+    }
+    if (listName.isEmpty) {
+      showSnackBar(context, "Please, fill in list name");
+    }
+    context
+        .read<ListCreationBloc>()
+        .add(ListCreationEvent.saveList(ListModel(listName, chosenIcon, [])));
   }
 
   @override
@@ -64,10 +84,16 @@ class _ListCreationState extends State<ListCreationWidget> {
       ),
       body: BlocConsumer<ListCreationBloc, ListCreationState>(
         listener: (context, state) {
-          if (state.status.isFailure) {
+          if (state.message.isNotEmpty) {
             debugPrint("QQQ ${state.message}");
           }
-          print("eee ${state.icons}");
+          if (state.status.isSuccessfulSaving) {
+            debugPrint("QQQ list was saved");
+            backToMain();
+          }
+          if (state.failedSaving.isNotEmpty) {
+            debugPrint("QQQ list was not saved");
+          }
         },
         builder: (context, state) {
           return SafeArea(
@@ -82,22 +108,31 @@ class _ListCreationState extends State<ListCreationWidget> {
                   iconList: null,
                   icon: null,
                   title: null,
-                  textValueCallback: (p0) => {},
+                  textValueCallback: (name) => {setListName(name)},
                 ),
                 const SizedBox(height: 4.0),
                 DictionaryTextField(
                   hint: "Поиск иконки",
-                  iconList:
-                      IconsList(results: state.icons.icons, iconSize: iconSize),
+                  iconList: IconsList(
+                    results: state.icons.icons,
+                    iconSize: iconSize,
+                    onClick: (icon) {
+                      debugPrint(icon);
+                      setState(() {
+                        chosenIcon = icon ?? "";
+                      });
+                    },
+                  ),
                   icon: null,
                   title: null,
                   textValueCallback: (text) => {
-                    if (text.length >= 3)
-                      {
+                    Future.delayed(const Duration(seconds: 1), () {
+                      if (text.length >= 3) {
                         context
                             .read<ListCreationBloc>()
-                            .add(ListCreationEvent.getIcons(text, 3))
+                            .add(ListCreationEvent.getIcons(text, 3));
                       }
+                    }),
                   },
                 ),
               ],

@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:smart_dictionary/core/common_ui/dictionary_button.dart';
 import 'package:smart_dictionary/core/common_ui/dictionary_fab.dart';
+import 'package:smart_dictionary/features/home/presentation/bloc/main_bloc.dart';
 import 'package:smart_dictionary/features/list_creation/presentation/widget/list_creation_screen.dart';
-import 'package:smart_dictionary/features/home/presentation/widget/definition_model.dart';
 import 'package:smart_dictionary/features/home/presentation/widget/list_card.dart';
-import 'package:smart_dictionary/features/home/presentation/models/list_model.dart';
-import 'package:smart_dictionary/features/home/presentation/models/synonym_model.dart';
-import 'package:smart_dictionary/features/home/presentation/models/translation_model.dart';
-import 'package:smart_dictionary/features/home/presentation/models/word_model.dart';
 import 'package:smart_dictionary/core/theme/colors.dart';
 import 'package:smart_dictionary/features/word_creation/presentation/widget/word_creation_screen.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MainPageWidget extends StatefulWidget {
   static route() => MaterialPageRoute(
@@ -22,39 +19,30 @@ class MainPageWidget extends StatefulWidget {
 }
 
 class _MainPageWidgetState extends State<MainPageWidget> {
-  final List<ListModel> listCards = [
-    ListModel(
-      1,
-      "Animals",
-      "https://api.iconify.design/cil/animal.svg?color=white",
-      [
-        WordModel(
-          1,
-          "annoy",
-          [SynonymModel("irritate", 10)],
-          [DefinitionModel("agvsdfg s")],
-          [TranslationModel("раздражать")],
-        )
-      ],
-    )
-  ];
-
-  void onFabClicked() {
-    Navigator.push(
+  void onFabClicked() async {
+    await Navigator.push(
       context,
       WordCreationWidget.route(),
     );
+    if (mounted) {
+      context.read<MainBloc>().add(const MainEvent.loadWordsLists());
+    }
   }
 
-  void onCreateListClicked() {
-    Navigator.push(
+  void onCreateListClicked() async {
+    await Navigator.push(
       context,
       ListCreationWidget.route(),
     );
+    if (mounted) {
+      context.read<MainBloc>().add(const MainEvent.loadWordsLists());
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    context.read<MainBloc>().add(const MainEvent.loadWordsLists());
+
     return Scaffold(
       floatingActionButton: DictionaryFab(
         text: "Слово",
@@ -75,31 +63,36 @@ class _MainPageWidgetState extends State<MainPageWidget> {
         centerTitle: false,
         elevation: 2,
       ),
-      body: SafeArea(
-        top: true,
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            DictionaryButton(
-              text: 'Создать список',
-              onPressed: onCreateListClicked,
+      body: BlocConsumer<MainBloc, MainState>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          return SafeArea(
+            top: true,
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                DictionaryButton(
+                  text: 'Создать список',
+                  onPressed: onCreateListClicked,
+                ),
+                ListView.builder(
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  itemCount: state.list.length,
+                  itemBuilder: (context, index) {
+                    final el = state.list[index];
+                    return ListCard(
+                      title: el.name,
+                      wordCount: el.words.length.toString(),
+                      leadingIcon: el.icon,
+                    );
+                  },
+                ),
+              ],
             ),
-            ListView.builder(
-              scrollDirection: Axis.vertical,
-              shrinkWrap: true,
-              itemCount: listCards.length,
-              itemBuilder: (context, index) {
-                final list = listCards[index];
-                return ListCard(
-                  title: list.listName,
-                  wordCount: list.words.length.toString(),
-                  leadingIcon: list.listIcon,
-                );
-              },
-            ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }

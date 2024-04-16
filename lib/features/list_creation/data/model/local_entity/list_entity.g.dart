@@ -18,17 +18,20 @@ class ListEntityAdapter extends TypeAdapter<ListEntity> {
     };
     return ListEntity(
       fields[0] as String,
-      fields[1] as WordEntity,
+      fields[1] as String,
+      (fields[2] as List).cast<WordEntity>(),
     );
   }
 
   @override
   void write(BinaryWriter writer, ListEntity obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(3)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
+      ..write(obj.icon)
+      ..writeByte(2)
       ..write(obj.words);
   }
 

@@ -183,22 +183,44 @@ extension GlobalKeyExtension on GlobalKey {
   }
 }
 
-class IconsList extends StatelessWidget {
+class IconsList extends StatefulWidget {
   final List<String?> results;
   final double iconSize;
-  const IconsList({super.key, required this.results, required this.iconSize});
+  final Function(String?) onClick;
+
+  const IconsList({
+    required this.results,
+    required this.iconSize,
+    required this.onClick,
+  });
+
+  @override
+  State<IconsList> createState() => _IconsListState();
+}
+
+class _IconsListState extends State<IconsList> {
+  int? _isSelected = null;
+
+  void _handleTap(index) {
+    setState(() {
+      _isSelected = index;
+    });
+    widget.onClick(
+      widget.results.nonNulls.elementAt(index),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    final int crossAxisCount = MediaQuery.of(context).size.width ~/ iconSize;
-    print("qqq $results");
+    final int crossAxisCount =
+        MediaQuery.of(context).size.width ~/ widget.iconSize;
     return Column(
       children: [
         const Divider(
           thickness: 3.0,
         ),
         const SizedBox(height: 12.0),
-        if (results.isNotEmpty)
+        if (widget.results.isNotEmpty)
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: GridView.builder(
@@ -209,13 +231,21 @@ class IconsList extends StatelessWidget {
                 crossAxisSpacing: 4.0,
                 mainAxisSpacing: 16.0,
               ),
-              itemCount: results.length,
+              itemCount: widget.results.length,
               itemBuilder: (context, index) {
-                return Center(
-                  child: SvgPicture.network(
-                    results.nonNulls.elementAt(index),
-                    width: iconSize,
-                    height: iconSize,
+                return InkWell(
+                  onTap: () => {_handleTap(index)},
+                  child: Center(
+                    child: Container(
+                      color: _isSelected == index
+                          ? Colors.grey
+                          : Colors.transparent,
+                      child: SvgPicture.network(
+                        widget.results.nonNulls.elementAt(index),
+                        width: widget.iconSize,
+                        height: widget.iconSize,
+                      ),
+                    ),
                   ),
                 );
               },

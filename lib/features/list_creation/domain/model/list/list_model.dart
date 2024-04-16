@@ -2,7 +2,8 @@ import 'package:smart_dictionary/features/list_creation/domain/model/list/word_m
 
 class ListModel {
   String name;
-  WordModel words;
+  String icon;
+  List<WordModel> words;
 
-  ListModel(this.name, this.words);
+  ListModel(this.name, this.icon, this.words);
 }

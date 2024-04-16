@@ -20,7 +20,10 @@ class IconSourceImpl implements IconSource {
       {required String word, required int limit}) async {
     var query = {"query": word, "limit": limit};
     try {
-      final request = await dioIconClient.get("search", queryParameters: query);
+      debugPrint("666 ${dioIconClient.options.baseUrl} ${word}");
+      final request =
+          await dioIconClient.get("/search", queryParameters: query);
+      debugPrint("5555 ${request.realUri}");
       if (request.statusCode != 200) {
         debugPrint("getIcon error ${request.statusMessage}");
         throw InvalidResponse(request.statusMessage.toString());

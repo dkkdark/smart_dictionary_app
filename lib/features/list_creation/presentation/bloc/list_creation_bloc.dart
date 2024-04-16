@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:smart_dictionary/features/list_creation/domain/model/icon/icon_model.dart';
+import 'package:smart_dictionary/features/list_creation/domain/model/list/list_model.dart';
+import 'package:smart_dictionary/features/list_creation/domain/usecase/add_list_use_case.dart';
 import 'package:smart_dictionary/features/list_creation/domain/usecase/get_icons_use_case.dart';
 
 part 'list_creation_event.dart';
@@ -11,9 +13,13 @@ part 'list_creation_bloc.freezed.dart';
 
 class ListCreationBloc extends Bloc<ListCreationEvent, ListCreationState> {
   final GetIconsUseCase _getIconsUseCase;
+  final AddListUseCase _addList;
 
-  ListCreationBloc({required GetIconsUseCase getIconsUseCase})
+  ListCreationBloc(
+      {required GetIconsUseCase getIconsUseCase,
+      required AddListUseCase addList})
       : _getIconsUseCase = getIconsUseCase,
+        _addList = addList,
         super(
           const ListCreationState(),
         ) {
@@ -29,13 +35,11 @@ class ListCreationBloc extends Bloc<ListCreationEvent, ListCreationState> {
     res.fold(
       (l) => emit(
         state.copyWith(
-          status: ListCreationStatus.failure,
           message: l.message,
         ),
       ),
       (r) => emit(
         state.copyWith(
-          status: ListCreationStatus.success,
           icons: r,
         ),
       ),
@@ -44,6 +48,11 @@ class ListCreationBloc extends Bloc<ListCreationEvent, ListCreationState> {
 
   Future<void> _saveList(
       _SaveList event, Emitter<ListCreationState> emit) async {
-    return;
+    final res = await _addList(event.list);
+    res.fold(
+        (l) => emit(state.copyWith(failedSaving: l.message)),
+        (r) => emit(state.copyWith(
+              status: ListCreationStatus.successfulSaving,
+            )));
   }
 }

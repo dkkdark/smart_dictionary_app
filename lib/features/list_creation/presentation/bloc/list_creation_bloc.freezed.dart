@@ -19,19 +19,19 @@ mixin _$ListCreationEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String word, int limit) getIcons,
-    required TResult Function() saveList,
+    required TResult Function(ListModel list) saveList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String word, int limit)? getIcons,
-    TResult? Function()? saveList,
+    TResult? Function(ListModel list)? saveList,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String word, int limit)? getIcons,
-    TResult Function()? saveList,
+    TResult Function(ListModel list)? saveList,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -147,7 +147,7 @@ class _$GetIconsImpl implements _GetIcons {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String word, int limit) getIcons,
-    required TResult Function() saveList,
+    required TResult Function(ListModel list) saveList,
   }) {
     return getIcons(word, limit);
   }
@@ -156,7 +156,7 @@ class _$GetIconsImpl implements _GetIcons {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String word, int limit)? getIcons,
-    TResult? Function()? saveList,
+    TResult? Function(ListModel list)? saveList,
   }) {
     return getIcons?.call(word, limit);
   }
@@ -165,7 +165,7 @@ class _$GetIconsImpl implements _GetIcons {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String word, int limit)? getIcons,
-    TResult Function()? saveList,
+    TResult Function(ListModel list)? saveList,
     required TResult orElse(),
   }) {
     if (getIcons != null) {
@@ -221,6 +221,8 @@ abstract class _$$SaveListImplCopyWith<$Res> {
   factory _$$SaveListImplCopyWith(
           _$SaveListImpl value, $Res Function(_$SaveListImpl) then) =
       __$$SaveListImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({ListModel list});
 }
 
 /// @nodoc
@@ -230,54 +232,78 @@ class __$$SaveListImplCopyWithImpl<$Res>
   __$$SaveListImplCopyWithImpl(
       _$SaveListImpl _value, $Res Function(_$SaveListImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? list = null,
+  }) {
+    return _then(_$SaveListImpl(
+      null == list
+          ? _value.list
+          : list // ignore: cast_nullable_to_non_nullable
+              as ListModel,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$SaveListImpl implements _SaveList {
-  const _$SaveListImpl();
+  const _$SaveListImpl(this.list);
+
+  @override
+  final ListModel list;
 
   @override
   String toString() {
-    return 'ListCreationEvent.saveList()';
+    return 'ListCreationEvent.saveList(list: $list)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SaveListImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$SaveListImpl &&
+            (identical(other.list, list) || other.list == list));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, list);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SaveListImplCopyWith<_$SaveListImpl> get copyWith =>
+      __$$SaveListImplCopyWithImpl<_$SaveListImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String word, int limit) getIcons,
-    required TResult Function() saveList,
+    required TResult Function(ListModel list) saveList,
   }) {
-    return saveList();
+    return saveList(list);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String word, int limit)? getIcons,
-    TResult? Function()? saveList,
+    TResult? Function(ListModel list)? saveList,
   }) {
-    return saveList?.call();
+    return saveList?.call(list);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String word, int limit)? getIcons,
-    TResult Function()? saveList,
+    TResult Function(ListModel list)? saveList,
     required TResult orElse(),
   }) {
     if (saveList != null) {
-      return saveList();
+      return saveList(list);
     }
     return orElse();
   }
@@ -315,7 +341,12 @@ class _$SaveListImpl implements _SaveList {
 }
 
 abstract class _SaveList implements ListCreationEvent {
-  const factory _SaveList() = _$SaveListImpl;
+  const factory _SaveList(final ListModel list) = _$SaveListImpl;
+
+  ListModel get list;
+  @JsonKey(ignore: true)
+  _$$SaveListImplCopyWith<_$SaveListImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -323,6 +354,7 @@ mixin _$ListCreationState {
   ListCreationStatus get status => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
   IconModel get icons => throw _privateConstructorUsedError;
+  String get failedSaving => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ListCreationStateCopyWith<ListCreationState> get copyWith =>
@@ -335,7 +367,11 @@ abstract class $ListCreationStateCopyWith<$Res> {
           ListCreationState value, $Res Function(ListCreationState) then) =
       _$ListCreationStateCopyWithImpl<$Res, ListCreationState>;
   @useResult
-  $Res call({ListCreationStatus status, String message, IconModel icons});
+  $Res call(
+      {ListCreationStatus status,
+      String message,
+      IconModel icons,
+      String failedSaving});
 
   $IconModelCopyWith<$Res> get icons;
 }
@@ -356,6 +392,7 @@ class _$ListCreationStateCopyWithImpl<$Res, $Val extends ListCreationState>
     Object? status = null,
     Object? message = null,
     Object? icons = null,
+    Object? failedSaving = null,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -370,6 +407,10 @@ class _$ListCreationStateCopyWithImpl<$Res, $Val extends ListCreationState>
           ? _value.icons
           : icons // ignore: cast_nullable_to_non_nullable
               as IconModel,
+      failedSaving: null == failedSaving
+          ? _value.failedSaving
+          : failedSaving // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 
@@ -390,7 +431,11 @@ abstract class _$$ListCreationStateImplCopyWith<$Res>
       __$$ListCreationStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({ListCreationStatus status, String message, IconModel icons});
+  $Res call(
+      {ListCreationStatus status,
+      String message,
+      IconModel icons,
+      String failedSaving});
 
   @override
   $IconModelCopyWith<$Res> get icons;
@@ -410,6 +455,7 @@ class __$$ListCreationStateImplCopyWithImpl<$Res>
     Object? status = null,
     Object? message = null,
     Object? icons = null,
+    Object? failedSaving = null,
   }) {
     return _then(_$ListCreationStateImpl(
       status: null == status
@@ -424,6 +470,10 @@ class __$$ListCreationStateImplCopyWithImpl<$Res>
           ? _value.icons
           : icons // ignore: cast_nullable_to_non_nullable
               as IconModel,
+      failedSaving: null == failedSaving
+          ? _value.failedSaving
+          : failedSaving // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -434,7 +484,8 @@ class _$ListCreationStateImpl implements _ListCreationState {
   const _$ListCreationStateImpl(
       {this.status = ListCreationStatus.initial,
       this.message = "",
-      this.icons = const IconModel(icons: [])});
+      this.icons = const IconModel(icons: []),
+      this.failedSaving = ""});
 
   @override
   @JsonKey()
@@ -445,10 +496,13 @@ class _$ListCreationStateImpl implements _ListCreationState {
   @override
   @JsonKey()
   final IconModel icons;
+  @override
+  @JsonKey()
+  final String failedSaving;
 
   @override
   String toString() {
-    return 'ListCreationState(status: $status, message: $message, icons: $icons)';
+    return 'ListCreationState(status: $status, message: $message, icons: $icons, failedSaving: $failedSaving)';
   }
 
   @override
@@ -458,11 +512,14 @@ class _$ListCreationStateImpl implements _ListCreationState {
             other is _$ListCreationStateImpl &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.message, message) || other.message == message) &&
-            (identical(other.icons, icons) || other.icons == icons));
+            (identical(other.icons, icons) || other.icons == icons) &&
+            (identical(other.failedSaving, failedSaving) ||
+                other.failedSaving == failedSaving));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, message, icons);
+  int get hashCode =>
+      Object.hash(runtimeType, status, message, icons, failedSaving);
 
   @JsonKey(ignore: true)
   @override
@@ -476,7 +533,8 @@ abstract class _ListCreationState implements ListCreationState {
   const factory _ListCreationState(
       {final ListCreationStatus status,
       final String message,
-      final IconModel icons}) = _$ListCreationStateImpl;
+      final IconModel icons,
+      final String failedSaving}) = _$ListCreationStateImpl;
 
   @override
   ListCreationStatus get status;
@@ -484,6 +542,8 @@ abstract class _ListCreationState implements ListCreationState {
   String get message;
   @override
   IconModel get icons;
+  @override
+  String get failedSaving;
   @override
   @JsonKey(ignore: true)
   _$$ListCreationStateImplCopyWith<_$ListCreationStateImpl> get copyWith =>

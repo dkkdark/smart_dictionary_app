@@ -41,48 +41,63 @@ class ListCreationRepositoryImpl implements ListCreationRepository {
   }
 
   @override
-  void initBox() {
-    listLocalDataSource.initBox();
-  }
-
-  @override
-  void insertList({required ListModel list}) {
-    listLocalDataSource.insertList(
-      list: ListEntity(
-        list.name,
-        WordEntity(
-          list.words.word,
-          list.words.synonym
-              .map((e) => SynonymEntity(e.word, e.score))
+  Future<Either<Failure, void>> insertList({required ListModel list}) async {
+    try {
+      void res = listLocalDataSource.insertList(
+        list: ListEntity(
+          list.name,
+          list.icon,
+          list.words
+              .map(
+                (l) => WordEntity(
+                  l.word,
+                  l.synonym.map((e) => SynonymEntity(e.word, e.score)).toList(),
+                  l.definition
+                      .map((e) => DefinitionEntity(e.definition, e.example))
+                      .toList(),
+                  l.translation.map((e) => TranslationEntity(e.text)).toList(),
+                ),
+              )
               .toList(),
-          list.words.definition
-              .map((e) => DefinitionEntity(e.definition, e.example))
-              .toList(),
-          list.words.translation.map((e) => TranslationEntity(e.text)).toList(),
         ),
-      ),
-    );
+      );
+      return right(res);
+    } on InvalidInsert catch (e) {
+      return left(Failure(e.message));
+    }
   }
 
   @override
-  List<ListModel> loadLists() {
-    var res = listLocalDataSource.loadLists();
-    return res
-        .map(
-          (l) => ListModel(
-            l.name,
-            WordModel(
-              l.words.word,
-              l.words.synonym
-                  .map((e) => SynonymModel(e.word, e.score))
-                  .toList(),
-              l.words.definition
-                  .map((e) => DefinitionModel(e.definition, e.example))
-                  .toList(),
-              l.words.translation.map((e) => TranslationModel(e.text)).toList(),
-            ),
-          ),
-        )
-        .toList();
+  Future<Either<Failure, List<ListModel>>> loadLists() async {
+    try {
+      var list = await listLocalDataSource.loadLists();
+      var res = list
+          .map(
+            (l) => ListModel(
+                l.name,
+                l.icon,
+                l.words
+                    .map(
+                      (k) => WordModel(
+                        k.word,
+                        k.synonym
+                            .map((e) => SynonymModel(e.word, e.score))
+                            .toList(),
+                        k.definition
+                            .map(
+                                (e) => DefinitionModel(e.definition, e.example))
+                            .toList(),
+                        k.translation
+                            .map((e) => TranslationModel(e.text))
+                            .toList(),
+                      ),
+                    )
+                    .toList()),
+          )
+          .toList();
+      return right(res);
+    } on InvalidGet catch (e) {
+      return left(Failure(e.message));
+    }
   }
 }

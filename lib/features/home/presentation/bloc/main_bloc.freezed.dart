@@ -19,32 +19,38 @@ mixin _$MainEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadWordsLists,
+    required TResult Function() initHiveBox,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadWordsLists,
+    TResult? Function()? initHiveBox,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadWordsLists,
+    TResult Function()? initHiveBox,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_LoadWordsLists value) loadWordsLists,
+    required TResult Function(_InitHiveBox value) initHiveBox,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LoadWordsLists value)? loadWordsLists,
+    TResult? Function(_InitHiveBox value)? initHiveBox,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadWordsLists value)? loadWordsLists,
+    TResult Function(_InitHiveBox value)? initHiveBox,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -114,6 +120,7 @@ class _$LoadWordsListsImpl
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loadWordsLists,
+    required TResult Function() initHiveBox,
   }) {
     return loadWordsLists();
   }
@@ -122,6 +129,7 @@ class _$LoadWordsListsImpl
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loadWordsLists,
+    TResult? Function()? initHiveBox,
   }) {
     return loadWordsLists?.call();
   }
@@ -130,6 +138,7 @@ class _$LoadWordsListsImpl
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loadWordsLists,
+    TResult Function()? initHiveBox,
     required TResult orElse(),
   }) {
     if (loadWordsLists != null) {
@@ -142,6 +151,7 @@ class _$LoadWordsListsImpl
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_LoadWordsLists value) loadWordsLists,
+    required TResult Function(_InitHiveBox value) initHiveBox,
   }) {
     return loadWordsLists(this);
   }
@@ -150,6 +160,7 @@ class _$LoadWordsListsImpl
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_LoadWordsLists value)? loadWordsLists,
+    TResult? Function(_InitHiveBox value)? initHiveBox,
   }) {
     return loadWordsLists?.call(this);
   }
@@ -158,6 +169,7 @@ class _$LoadWordsListsImpl
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadWordsLists value)? loadWordsLists,
+    TResult Function(_InitHiveBox value)? initHiveBox,
     required TResult orElse(),
   }) {
     if (loadWordsLists != null) {
@@ -172,56 +184,121 @@ abstract class _LoadWordsLists implements MainEvent {
 }
 
 /// @nodoc
-mixin _$MainState {
+abstract class _$$InitHiveBoxImplCopyWith<$Res> {
+  factory _$$InitHiveBoxImplCopyWith(
+          _$InitHiveBoxImpl value, $Res Function(_$InitHiveBoxImpl) then) =
+      __$$InitHiveBoxImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$InitHiveBoxImplCopyWithImpl<$Res>
+    extends _$MainEventCopyWithImpl<$Res, _$InitHiveBoxImpl>
+    implements _$$InitHiveBoxImplCopyWith<$Res> {
+  __$$InitHiveBoxImplCopyWithImpl(
+      _$InitHiveBoxImpl _value, $Res Function(_$InitHiveBoxImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$InitHiveBoxImpl with DiagnosticableTreeMixin implements _InitHiveBox {
+  const _$InitHiveBoxImpl();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'MainEvent.initHiveBox()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'MainEvent.initHiveBox'));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$InitHiveBoxImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() mainLoadListLoading,
-    required TResult Function() mainLoadListSuccess,
-    required TResult Function() mainLoadListError,
-  }) =>
-      throw _privateConstructorUsedError;
+    required TResult Function() loadWordsLists,
+    required TResult Function() initHiveBox,
+  }) {
+    return initHiveBox();
+  }
+
+  @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? mainLoadListLoading,
-    TResult? Function()? mainLoadListSuccess,
-    TResult? Function()? mainLoadListError,
-  }) =>
-      throw _privateConstructorUsedError;
+    TResult? Function()? loadWordsLists,
+    TResult? Function()? initHiveBox,
+  }) {
+    return initHiveBox?.call();
+  }
+
+  @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? mainLoadListLoading,
-    TResult Function()? mainLoadListSuccess,
-    TResult Function()? mainLoadListError,
+    TResult Function()? loadWordsLists,
+    TResult Function()? initHiveBox,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) {
+    if (initHiveBox != null) {
+      return initHiveBox();
+    }
+    return orElse();
+  }
+
+  @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_MainLoadListLoading value) mainLoadListLoading,
-    required TResult Function(_MainLoadListSuccess value) mainLoadListSuccess,
-    required TResult Function(_MainLoadListError value) mainLoadListError,
-  }) =>
-      throw _privateConstructorUsedError;
+    required TResult Function(_LoadWordsLists value) loadWordsLists,
+    required TResult Function(_InitHiveBox value) initHiveBox,
+  }) {
+    return initHiveBox(this);
+  }
+
+  @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_MainLoadListLoading value)? mainLoadListLoading,
-    TResult? Function(_MainLoadListSuccess value)? mainLoadListSuccess,
-    TResult? Function(_MainLoadListError value)? mainLoadListError,
-  }) =>
-      throw _privateConstructorUsedError;
+    TResult? Function(_LoadWordsLists value)? loadWordsLists,
+    TResult? Function(_InitHiveBox value)? initHiveBox,
+  }) {
+    return initHiveBox?.call(this);
+  }
+
+  @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_MainLoadListLoading value)? mainLoadListLoading,
-    TResult Function(_MainLoadListSuccess value)? mainLoadListSuccess,
-    TResult Function(_MainLoadListError value)? mainLoadListError,
+    TResult Function(_LoadWordsLists value)? loadWordsLists,
+    TResult Function(_InitHiveBox value)? initHiveBox,
     required TResult orElse(),
-  }) =>
+  }) {
+    if (initHiveBox != null) {
+      return initHiveBox(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _InitHiveBox implements MainEvent {
+  const factory _InitHiveBox() = _$InitHiveBoxImpl;
+}
+
+/// @nodoc
+mixin _$MainState {
+  MainStatus get status => throw _privateConstructorUsedError;
+  String get message => throw _privateConstructorUsedError;
+  List<ListModel> get list => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $MainStateCopyWith<MainState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -229,6 +306,8 @@ mixin _$MainState {
 abstract class $MainStateCopyWith<$Res> {
   factory $MainStateCopyWith(MainState value, $Res Function(MainState) then) =
       _$MainStateCopyWithImpl<$Res, MainState>;
+  @useResult
+  $Res call({MainStatus status, String message, List<ListModel> list});
 }
 
 /// @nodoc
@@ -240,494 +319,148 @@ class _$MainStateCopyWithImpl<$Res, $Val extends MainState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? status = null,
+    Object? message = null,
+    Object? list = null,
+  }) {
+    return _then(_value.copyWith(
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as MainStatus,
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+      list: null == list
+          ? _value.list
+          : list // ignore: cast_nullable_to_non_nullable
+              as List<ListModel>,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
-      __$$InitialImplCopyWithImpl<$Res>;
+abstract class _$$MainStateImplCopyWith<$Res>
+    implements $MainStateCopyWith<$Res> {
+  factory _$$MainStateImplCopyWith(
+          _$MainStateImpl value, $Res Function(_$MainStateImpl) then) =
+      __$$MainStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({MainStatus status, String message, List<ListModel> list});
 }
 
 /// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$MainStateCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
+class __$$MainStateImplCopyWithImpl<$Res>
+    extends _$MainStateCopyWithImpl<$Res, _$MainStateImpl>
+    implements _$$MainStateImplCopyWith<$Res> {
+  __$$MainStateImplCopyWithImpl(
+      _$MainStateImpl _value, $Res Function(_$MainStateImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? status = null,
+    Object? message = null,
+    Object? list = null,
+  }) {
+    return _then(_$MainStateImpl(
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as MainStatus,
+      message: null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+      list: null == list
+          ? _value._list
+          : list // ignore: cast_nullable_to_non_nullable
+              as List<ListModel>,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$InitialImpl with DiagnosticableTreeMixin implements _Initial {
-  const _$InitialImpl();
+class _$MainStateImpl with DiagnosticableTreeMixin implements _MainState {
+  const _$MainStateImpl(
+      {this.status = MainStatus.initial,
+      this.message = "",
+      final List<ListModel> list = const []})
+      : _list = list;
+
+  @override
+  @JsonKey()
+  final MainStatus status;
+  @override
+  @JsonKey()
+  final String message;
+  final List<ListModel> _list;
+  @override
+  @JsonKey()
+  List<ListModel> get list {
+    if (_list is EqualUnmodifiableListView) return _list;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_list);
+  }
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'MainState.initial()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('type', 'MainState.initial'));
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() mainLoadListLoading,
-    required TResult Function() mainLoadListSuccess,
-    required TResult Function() mainLoadListError,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? mainLoadListLoading,
-    TResult? Function()? mainLoadListSuccess,
-    TResult? Function()? mainLoadListError,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? mainLoadListLoading,
-    TResult Function()? mainLoadListSuccess,
-    TResult Function()? mainLoadListError,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_MainLoadListLoading value) mainLoadListLoading,
-    required TResult Function(_MainLoadListSuccess value) mainLoadListSuccess,
-    required TResult Function(_MainLoadListError value) mainLoadListError,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_MainLoadListLoading value)? mainLoadListLoading,
-    TResult? Function(_MainLoadListSuccess value)? mainLoadListSuccess,
-    TResult? Function(_MainLoadListError value)? mainLoadListError,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_MainLoadListLoading value)? mainLoadListLoading,
-    TResult Function(_MainLoadListSuccess value)? mainLoadListSuccess,
-    TResult Function(_MainLoadListError value)? mainLoadListError,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Initial implements MainState {
-  const factory _Initial() = _$InitialImpl;
-}
-
-/// @nodoc
-abstract class _$$MainLoadListLoadingImplCopyWith<$Res> {
-  factory _$$MainLoadListLoadingImplCopyWith(_$MainLoadListLoadingImpl value,
-          $Res Function(_$MainLoadListLoadingImpl) then) =
-      __$$MainLoadListLoadingImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$MainLoadListLoadingImplCopyWithImpl<$Res>
-    extends _$MainStateCopyWithImpl<$Res, _$MainLoadListLoadingImpl>
-    implements _$$MainLoadListLoadingImplCopyWith<$Res> {
-  __$$MainLoadListLoadingImplCopyWithImpl(_$MainLoadListLoadingImpl _value,
-      $Res Function(_$MainLoadListLoadingImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$MainLoadListLoadingImpl
-    with DiagnosticableTreeMixin
-    implements _MainLoadListLoading {
-  const _$MainLoadListLoadingImpl();
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'MainState.mainLoadListLoading()';
+    return 'MainState(status: $status, message: $message, list: $list)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-        .add(DiagnosticsProperty('type', 'MainState.mainLoadListLoading'));
+      ..add(DiagnosticsProperty('type', 'MainState'))
+      ..add(DiagnosticsProperty('status', status))
+      ..add(DiagnosticsProperty('message', message))
+      ..add(DiagnosticsProperty('list', list));
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$MainLoadListLoadingImpl);
+            other is _$MainStateImpl &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.message, message) || other.message == message) &&
+            const DeepCollectionEquality().equals(other._list, _list));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType, status, message, const DeepCollectionEquality().hash(_list));
 
+  @JsonKey(ignore: true)
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() mainLoadListLoading,
-    required TResult Function() mainLoadListSuccess,
-    required TResult Function() mainLoadListError,
-  }) {
-    return mainLoadListLoading();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? mainLoadListLoading,
-    TResult? Function()? mainLoadListSuccess,
-    TResult? Function()? mainLoadListError,
-  }) {
-    return mainLoadListLoading?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? mainLoadListLoading,
-    TResult Function()? mainLoadListSuccess,
-    TResult Function()? mainLoadListError,
-    required TResult orElse(),
-  }) {
-    if (mainLoadListLoading != null) {
-      return mainLoadListLoading();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_MainLoadListLoading value) mainLoadListLoading,
-    required TResult Function(_MainLoadListSuccess value) mainLoadListSuccess,
-    required TResult Function(_MainLoadListError value) mainLoadListError,
-  }) {
-    return mainLoadListLoading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_MainLoadListLoading value)? mainLoadListLoading,
-    TResult? Function(_MainLoadListSuccess value)? mainLoadListSuccess,
-    TResult? Function(_MainLoadListError value)? mainLoadListError,
-  }) {
-    return mainLoadListLoading?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_MainLoadListLoading value)? mainLoadListLoading,
-    TResult Function(_MainLoadListSuccess value)? mainLoadListSuccess,
-    TResult Function(_MainLoadListError value)? mainLoadListError,
-    required TResult orElse(),
-  }) {
-    if (mainLoadListLoading != null) {
-      return mainLoadListLoading(this);
-    }
-    return orElse();
-  }
+  @pragma('vm:prefer-inline')
+  _$$MainStateImplCopyWith<_$MainStateImpl> get copyWith =>
+      __$$MainStateImplCopyWithImpl<_$MainStateImpl>(this, _$identity);
 }
 
-abstract class _MainLoadListLoading implements MainState {
-  const factory _MainLoadListLoading() = _$MainLoadListLoadingImpl;
-}
-
-/// @nodoc
-abstract class _$$MainLoadListSuccessImplCopyWith<$Res> {
-  factory _$$MainLoadListSuccessImplCopyWith(_$MainLoadListSuccessImpl value,
-          $Res Function(_$MainLoadListSuccessImpl) then) =
-      __$$MainLoadListSuccessImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$MainLoadListSuccessImplCopyWithImpl<$Res>
-    extends _$MainStateCopyWithImpl<$Res, _$MainLoadListSuccessImpl>
-    implements _$$MainLoadListSuccessImplCopyWith<$Res> {
-  __$$MainLoadListSuccessImplCopyWithImpl(_$MainLoadListSuccessImpl _value,
-      $Res Function(_$MainLoadListSuccessImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$MainLoadListSuccessImpl
-    with DiagnosticableTreeMixin
-    implements _MainLoadListSuccess {
-  const _$MainLoadListSuccessImpl();
+abstract class _MainState implements MainState {
+  const factory _MainState(
+      {final MainStatus status,
+      final String message,
+      final List<ListModel> list}) = _$MainStateImpl;
 
   @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'MainState.mainLoadListSuccess()';
-  }
-
+  MainStatus get status;
   @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-        .add(DiagnosticsProperty('type', 'MainState.mainLoadListSuccess'));
-  }
-
+  String get message;
   @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$MainLoadListSuccessImpl);
-  }
-
+  List<ListModel> get list;
   @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() mainLoadListLoading,
-    required TResult Function() mainLoadListSuccess,
-    required TResult Function() mainLoadListError,
-  }) {
-    return mainLoadListSuccess();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? mainLoadListLoading,
-    TResult? Function()? mainLoadListSuccess,
-    TResult? Function()? mainLoadListError,
-  }) {
-    return mainLoadListSuccess?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? mainLoadListLoading,
-    TResult Function()? mainLoadListSuccess,
-    TResult Function()? mainLoadListError,
-    required TResult orElse(),
-  }) {
-    if (mainLoadListSuccess != null) {
-      return mainLoadListSuccess();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_MainLoadListLoading value) mainLoadListLoading,
-    required TResult Function(_MainLoadListSuccess value) mainLoadListSuccess,
-    required TResult Function(_MainLoadListError value) mainLoadListError,
-  }) {
-    return mainLoadListSuccess(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_MainLoadListLoading value)? mainLoadListLoading,
-    TResult? Function(_MainLoadListSuccess value)? mainLoadListSuccess,
-    TResult? Function(_MainLoadListError value)? mainLoadListError,
-  }) {
-    return mainLoadListSuccess?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_MainLoadListLoading value)? mainLoadListLoading,
-    TResult Function(_MainLoadListSuccess value)? mainLoadListSuccess,
-    TResult Function(_MainLoadListError value)? mainLoadListError,
-    required TResult orElse(),
-  }) {
-    if (mainLoadListSuccess != null) {
-      return mainLoadListSuccess(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _MainLoadListSuccess implements MainState {
-  const factory _MainLoadListSuccess() = _$MainLoadListSuccessImpl;
-}
-
-/// @nodoc
-abstract class _$$MainLoadListErrorImplCopyWith<$Res> {
-  factory _$$MainLoadListErrorImplCopyWith(_$MainLoadListErrorImpl value,
-          $Res Function(_$MainLoadListErrorImpl) then) =
-      __$$MainLoadListErrorImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$MainLoadListErrorImplCopyWithImpl<$Res>
-    extends _$MainStateCopyWithImpl<$Res, _$MainLoadListErrorImpl>
-    implements _$$MainLoadListErrorImplCopyWith<$Res> {
-  __$$MainLoadListErrorImplCopyWithImpl(_$MainLoadListErrorImpl _value,
-      $Res Function(_$MainLoadListErrorImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$MainLoadListErrorImpl
-    with DiagnosticableTreeMixin
-    implements _MainLoadListError {
-  const _$MainLoadListErrorImpl();
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'MainState.mainLoadListError()';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('type', 'MainState.mainLoadListError'));
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$MainLoadListErrorImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() mainLoadListLoading,
-    required TResult Function() mainLoadListSuccess,
-    required TResult Function() mainLoadListError,
-  }) {
-    return mainLoadListError();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? mainLoadListLoading,
-    TResult? Function()? mainLoadListSuccess,
-    TResult? Function()? mainLoadListError,
-  }) {
-    return mainLoadListError?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? mainLoadListLoading,
-    TResult Function()? mainLoadListSuccess,
-    TResult Function()? mainLoadListError,
-    required TResult orElse(),
-  }) {
-    if (mainLoadListError != null) {
-      return mainLoadListError();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_MainLoadListLoading value) mainLoadListLoading,
-    required TResult Function(_MainLoadListSuccess value) mainLoadListSuccess,
-    required TResult Function(_MainLoadListError value) mainLoadListError,
-  }) {
-    return mainLoadListError(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_MainLoadListLoading value)? mainLoadListLoading,
-    TResult? Function(_MainLoadListSuccess value)? mainLoadListSuccess,
-    TResult? Function(_MainLoadListError value)? mainLoadListError,
-  }) {
-    return mainLoadListError?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_MainLoadListLoading value)? mainLoadListLoading,
-    TResult Function(_MainLoadListSuccess value)? mainLoadListSuccess,
-    TResult Function(_MainLoadListError value)? mainLoadListError,
-    required TResult orElse(),
-  }) {
-    if (mainLoadListError != null) {
-      return mainLoadListError(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _MainLoadListError implements MainState {
-  const factory _MainLoadListError() = _$MainLoadListErrorImpl;
+  @JsonKey(ignore: true)
+  _$$MainStateImplCopyWith<_$MainStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

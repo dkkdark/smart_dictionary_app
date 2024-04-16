@@ -8,7 +8,6 @@ abstract interface class ListCreationRepository {
     required String word,
     required int limit,
   });
-  void initBox();
-  void insertList({required ListModel list});
-  List<ListModel> loadLists();
+  Future<Either<Failure, void>> insertList({required ListModel list});
+  Future<Either<Failure, List<ListModel>>> loadLists();
 }

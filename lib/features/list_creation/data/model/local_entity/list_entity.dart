@@ -8,7 +8,9 @@ class ListEntity extends HiveObject {
   @HiveField(0)
   String name;
   @HiveField(1)
-  WordEntity words;
+  String icon;
+  @HiveField(2)
+  List<WordEntity> words;
 
-  ListEntity(this.name, this.words);
+  ListEntity(this.name, this.icon, this.words);
 }
